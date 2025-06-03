@@ -6,6 +6,12 @@ from openai import OpenAI
 
 client  = OpenAI()
 
+# # GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+
+# client  = OpenAI(
+#     api_key=GOOGLE_API_KEY,
+#     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+# )
 
 response = client.responses.create(
     model='gpt-4o-2024-08-06',
@@ -21,7 +27,7 @@ response = client.responses.create(
     ],
     stream=True
 )
-
+print(response)
 for event in response:
     if event.type == 'response.output_text.delta':
         # print(event)

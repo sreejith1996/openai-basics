@@ -1,4 +1,3 @@
-import json
 from openai import OpenAI
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
@@ -6,7 +5,6 @@ from typing import List
 from datetime import datetime
 
 client = OpenAI()
-
 
 load_dotenv()
 
@@ -46,8 +44,8 @@ Desired Position: Senior Data Scientist
 class JobApplication(BaseModel):
     name: str = Field(description="Full name of the applicant")
     email: str = Field(description="Email address of the applicant")
-    skills: List[str] = Field(description="List of the key skills present in the resume. Calculate the years based on the work experience and the current year " + str(datetime.now().year))
-    years_of_experiece: int = Field(description="Total years of experience.")
+    skills: List[str] = Field(description="List of the key skills present in the resume")
+    years_of_experiece: int = Field(description="Total years of experience. Calculate the years of experience based on the current year " + str(datetime.now().year))
     desired_position: str = Field(description="The job role the applicant is applying for")
 
 

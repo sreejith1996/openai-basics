@@ -21,7 +21,7 @@ Input: nums = [2,7,11,15], target = 9
 response = client.responses.create(
     model="gpt-4o-2024-08-06",
     input=[
-        {"role": "system", "content": "You are a helpful Leetcode tutor. Guide the user through the solution step by step."},
+        {"role": "system", "content": "You are a helpful Leetcode tutor. Guide the user through the solution step by step. The output will have the code and the explanation section will have the explanation for that code."},
         {"role": "user", "content": problem}
     ],
     text = {
@@ -58,14 +58,17 @@ if response.output[0].content[0].type == 'refusal':
 else: 
     leetcode_reasoning = json.loads(response.output_text)
 
-    print(leetcode_reasoning)
+    # print(leetcode_reasoning)
 
     for step in leetcode_reasoning["steps"]:
         print("Output: " + step["output"])
         print("-------------------")
         print("Explanation: " + step["explanation"])
+        
 
         print("\n")
+    
+    print("Final Answer : " + leetcode_reasoning["final_answer"])
 
 
 
